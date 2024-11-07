@@ -21,6 +21,10 @@ def plot_csv(csv_filepath):
 
     df = pd.read_csv(csv_filepath)
 
+    # TODO testing only
+    # plt.plot(df['timestamp'], df['close'], label='close')
+
+    # TODO put back
     #Add each column to the plot (except timestamp which is on the x axis)
     for col in df.columns:
 
@@ -34,6 +38,18 @@ def plot_csv(csv_filepath):
     plt.xticks(rotation=45) 
 
     plt.tight_layout()  #ensures there is enough vertical space below the graph to display the x axis labels when angled down
+
+
+    # Set the y axis limits from the min and max values of the variables to plot. Dont need to do this currently, range is set ok automatically
+    # numeric_df = df.select_dtypes(include=['number'])  # Get df that exclues the timeframe
+    # overall_min = numeric_df.min().min()
+    # overall_max = numeric_df.max().max()
+    # plt.ylim(overall_min, overall_max)
+
+
+
+    # Disable offset on y-axis
+    plt.gca().get_yaxis().get_major_formatter().set_useOffset(False)
 
     plt.legend()
     plt.show()
