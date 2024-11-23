@@ -21,10 +21,9 @@ def plot_csv(csv_filepath):
 
     df = pd.read_csv(csv_filepath)
 
-    # TODO testing only
+    # testing only
     # plt.plot(df['timestamp'], df['close'], label='close')
 
-    # TODO put back
     #Add each column to the plot (except timestamp which is on the x axis)
     for col in df.columns:
 
@@ -55,3 +54,79 @@ def plot_csv(csv_filepath):
     plt.show()
 
         
+
+def plot_csv_multi_axis(csv_filepath):
+
+    # This method is incomplete.
+
+    df = pd.read_csv(csv_filepath)
+
+    # Plotting
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+
+    # Plot variable1 on primary y-axis
+    ax1.plot(df['timestamp'], df['close'], color='blue', label='Variable 1')
+    ax1.set_xlabel('Time')
+    ax1.set_ylabel('Variable 1', color='blue')
+    ax1.tick_params(axis='y', labelcolor='blue')
+
+
+    # Create a second y-axis for variable2 and variable3
+    ax2 = ax1.twinx()
+    ax2.plot(df['timestamp'], df['mac_value_order_score'], color='red', label='Variable 2')
+    # ax2.plot(df['time'], df['variable3'], color='orange', linestyle='--', label='Variable 3')
+    ax2.set_ylabel('Variable 2 & 3', color='red')
+    ax2.tick_params(axis='y', labelcolor='red')
+
+    # plt.tight_layout()
+    plt.show()
+
+    print("chjicken")
+
+
+def plot_csv_multi_plots(csv_filepath):
+
+    df = pd.read_csv(csv_filepath)
+
+
+    # Create subplots
+    fig, axes = plt.subplots(3, 1, figsize=(10, 12), sharex=True)
+
+    axes[0].plot(df['timestamp'], df['close'], color='blue', label='Variable 1')
+    axes[0].set_ylabel('Variable 1')
+    axes[0].set_title('Variable 1')
+    axes[0].legend()
+
+    axes[1].plot(df['timestamp'], df['mac_value_order_score'], color='red', label='Variable 2')
+    # axes[1].plot(df['time'], df['variable3'], color='orange', linestyle='--', label='Variable 3')
+    axes[1].set_ylabel('Variable 2 & 3')
+    axes[1].set_title('Variable 2 & 3')
+    axes[1].legend()
+
+    axes[2].plot(df['timestamp'], df['10'], color='green', label='10')
+    axes[2].plot(df['timestamp'], df['20'], color='orange', linestyle='--', label='20')
+    axes[2].plot(df['timestamp'], df['30'], color='orange', linestyle='--', label='30')
+    axes[2].plot(df['timestamp'], df['40'], color='orange', linestyle='--', label='40')
+    axes[2].set_ylabel('Variable 4')
+    axes[2].set_title('Variable 4')
+    axes[2].legend()
+
+
+
+    # Add vertical lines where variable1 equals a specific value
+    times_with_specific_value = df['timestamp'][df['mac_value_order_score'] == 1]
+
+    for time_point in times_with_specific_value:
+        for ax in axes:  # Add vertical line to all subplots
+            ax.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+
+    times_with_specific_value = df['timestamp'][df['mac_value_order_score'] == -1]
+
+    for time_point in times_with_specific_value:
+        for ax in axes:  # Add vertical line to all subplots
+            ax.axvline(x=time_point, color='red', linestyle='--', alpha=0.7)
+
+
+    plt.show()
+
+    print("chjicken")
