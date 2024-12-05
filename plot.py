@@ -79,24 +79,41 @@ def plot_csv_multi_axis(csv_filepath):
     ax2.tick_params(axis='y', labelcolor='green')
 
 
+    # 
 
     
 
 
     # Add vertical lines where variable1 equals a specific value
-    times_with_specific_value = df['timestamp'][df['signal'] == 1]
 
-    time_point =times_with_specific_value[149]
-    ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+    times_with_specific_value = df['timestamp'][df['signal'] == 1]   #Longs
 
-    time_point =times_with_specific_value[151]
-    ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+    for time_point in times_with_specific_value:
+        ax1.axvline(x=time_point, color='green', linestyle='--', alpha=0.7)
 
-    time_point =times_with_specific_value[153]
-    ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+    times_with_specific_value = df['timestamp'][df['signal'] == 2]  #Shorts
 
-    time_point =times_with_specific_value[157]
-    ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+    for time_point in times_with_specific_value:
+        ax1.axvline(x=time_point, color='blue', linestyle='--', alpha=0.7)
+
+    times_with_specific_value = df['timestamp'][df['signal'] == 3]  #Exits
+ 
+    for time_point in times_with_specific_value:
+        ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+
+
+
+    # time_point =times_with_specific_value[149]
+    # ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+
+    # time_point =times_with_specific_value[151]
+    # ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+
+    # time_point =times_with_specific_value[153]
+    # ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
+
+    # time_point =times_with_specific_value[157]
+    # ax1.axvline(x=time_point, color='black', linestyle='--', alpha=0.7)
 
     # for time_point in times_with_specific_value:
 
