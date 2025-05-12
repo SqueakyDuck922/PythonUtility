@@ -1,0 +1,16 @@
+# MAC
+database:
+    driver: ODBC Driver 18 for SQL Server
+    server: 127.0.0.1
+    port: 1007
+    database: securities_masterC2
+    TrustedConnection: no   
+    username: sa   #Only used if TrustedConnection is false
+    password: Badger99    #Only used if TrustedConnection is false
+    ImportTable: ADX_trailingSL_engine_run_performance
+
+
+
+
+general:
+    FilePath: /Users/richardkirk/Library/CloudStorage/OneDrive-Personal/Documents/TD/Strategies/ADXStrategy/20241001_20241231/TrailingSLExit/a544a41f1c27_3__engine_run_performance.csv
